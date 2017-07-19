@@ -7,4 +7,4 @@ The repository provides two examples for extracting kinetics from replica exchan
 
 (1) Extracting kinetics from REMD simulations of alanine dipeptide (Ala2) and comparison to MD. Importantly the ala2-lag-time folder contains everything needed to validate the generated model. This is especially important in the typical use case, when no long equilibrium MD simulations are available. 
 
-(2) Extracting kinetics from REMD simulations of coarse-grained polymer model of the neomycin riboswitch. The extracted kinetics is compared to long MD simulations. 
+(2) Extracting kinetics from REMD simulations of a coarse-grained polymer model of the neomycin riboswitch. The extracted kinetics is compared to long MD simulations. 
