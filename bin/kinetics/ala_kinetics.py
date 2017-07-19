@@ -2,6 +2,7 @@ __author__ = 'lustelzl'
 
 import numpy as np
 import os
+import glob
 import seaborn as sns
 import matplotlib.pyplot as plt
 from copy import deepcopy
@@ -13,16 +14,22 @@ from collections import Counter
 from numpy.testing import assert_array_equal
 import cPickle as pickle
 from waiting_time import get_bin_centers
-#from waiting_time import *
 
 
-
-def make_q_dict(path, split_char, first_index=0, last_index=None, step=1, split_pos=-1):
+def make_q_dict(path, split_char, first_index=0, last_index=None, step=1, split_pos=-1,
+                verbose=False):
     q_l = glob.glob(path)
     q_dict = {}
     for q_fn in q_l:
-        trj = os.path.basename(q_fn).split(split_char)[split_pos] # "_c"
-        q_dict[int(float(trj))] = np.genfromtxt(q_fn)[first_index:last_index:step,:]
+        trj = os.path.basename(q_fn).split(split_char)[split_pos] 
+        trj, ext = os.path.splitext(trj)
+        if verbose:
+           print trj, q_fn
+        if ext == ".npy":
+           q_ar = np.load(q_fn)
+        else:
+             q_ar = np.genfromtxt(q_fn)   
+        q_dict[int(float(trj))] = q_ar[first_index:last_index:step,:]
     return q_dict
 
 
